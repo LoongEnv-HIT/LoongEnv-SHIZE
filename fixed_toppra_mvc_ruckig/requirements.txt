@@ -1,0 +1,8 @@
+numpy>=1.23,<2.0
+pandas>=1.5
+scipy>=1.10,<2.0
+toppra>=0.6
+ecos>=2.0
+ruckig>=0.9
+roboticstoolbox-python>=1.1
+spatialmath-python>=1.1

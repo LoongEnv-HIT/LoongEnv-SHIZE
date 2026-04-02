@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="HSR-JR650-2">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00014595931015321 0.158908803835202 0.0648518879707932"
+        rpy="0 0 0" />
+      <mass
+        value="81.3429635729025" />
+      <inertia
+        ixx="3.40678614676977"
+        ixy="-0.000786562507686469"
+        ixz="0.00432563065705544"
+        iyy="3.81526868541345"
+        iyz="0.0863719837615922"
+        izz="2.12261755305894" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link_1">
+    <inertial>
+      <origin
+        xyz="0.148974909733515 0.0381960147090044 0.584720014697334"
+        rpy="0 0 0" />
+      <mass
+        value="42.6698765223083" />
+      <inertia
+        ixx="1.41432500773332"
+        ixy="0.123740109869442"
+        ixz="-0.30814356414235"
+        iyy="1.54088479376204"
+        iyz="-0.0842494726050158"
+        izz="1.5197208947925" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_1"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_1" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="link_2">
+    <inertial>
+      <origin
+        xyz="8.27426588895785E-05 -0.483902028207985 -0.253885704150416"
+        rpy="0 0 0" />
+      <mass
+        value="40.5907830879813" />
+      <inertia
+        ixx="5.32132818168218"
+        ixy="-0.000664182783971974"
+        ixz="-0.000372063077756449"
+        iyy="0.284734420595122"
+        iyz="-0.11308218390106"
+        izz="5.39287160262395" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_2"
+    type="continuous">
+    <origin
+      xyz="0.249999999999997 0 0.6535"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="link_1" />
+    <child
+      link="link_2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="link_3">
+    <inertial>
+      <origin
+        xyz="0.0597838233620717 -0.119611738695421 -0.0118399616668598"
+        rpy="0 0 0" />
+      <mass
+        value="30.4908932175165" />
+      <inertia
+        ixx="0.75352139020917"
+        ixy="0.117922245665889"
+        ixz="-0.00636344928060502"
+        iyy="0.591810782080725"
+        iyz="0.0608386106948736"
+        izz="0.758541159925037" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.823529411764706 0.937254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_3"
+    type="continuous">
+    <origin
+      xyz="0 -1.09999999999999 0"
+      rpy="0 0 0" />
+    <parent
+      link="link_2" />
+    <child
+      link="link_3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="link_4">
+    <inertial>
+      <origin
+        xyz="0.00920289282025247 -9.95734458950626E-05 -0.475310024734902"
+        rpy="0 0 0" />
+      <mass
+        value="13.473975172987" />
+      <inertia
+        ixx="1.21782689132395"
+        ixy="1.20712349137422E-05"
+        ixz="-0.0584647601339157"
+        iyy="1.22531833976233"
+        iyz="0.000299162020431524"
+        izz="0.0523383941523836" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.823529411764706 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_4"
+    type="continuous">
+    <origin
+      xyz="1.07470000000001 -0.205 0"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="link_3" />
+    <child
+      link="link_4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="link_5">
+    <inertial>
+      <origin
+        xyz="0 0.0889710275715012 0.0263398101671699"
+        rpy="0 0 -1.5707963267949" />
+      <mass
+        value="3.07175363176601" />
+      <inertia
+        ixx="0.0215326703329874"
+        ixy="1.35577081914121E-06"
+        ixz="-1.51970663665388E-06"
+        iyy="0.0134602029209081"
+        iyz="0.00442660674455937"
+        izz="0.0160068010484531" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 -1.5707963267949" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 -1.5707963267949" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_5"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="0 -1.5707963267949 0" />
+    <parent
+      link="link_4" />
+    <child
+      link="link_5" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="link_6">
+    <inertial>
+      <origin
+        xyz="-1.56834969213815E-05 7.88462634314437E-05 -0.0104052747896417"
+        rpy="0 0 0" />
+      <mass
+        value="0.274096043065508" />
+      <inertia
+        ixx="0.000326982717560934"
+        ixy="-4.36247279804653E-07"
+        ixz="2.43045229346771E-08"
+        iyy="0.000329089105759899"
+        iyz="-1.22187087969139E-07"
+        izz="0.000637449607747047" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HSR-JR650-2/meshes/link_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_6"
+    type="continuous">
+    <origin
+      xyz="0.200599999999993 0 0"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="link_5" />
+    <child
+      link="link_6" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+</robot>

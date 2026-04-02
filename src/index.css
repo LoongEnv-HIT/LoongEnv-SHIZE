@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    line-height: 1.5;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #cccccc transparent;
+  }
+
+  [class*="text-[9px]"] {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+
+  [class*="text-[10px]"] {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+
+  [class*="text-[11px]"] {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b8b8b8;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+}

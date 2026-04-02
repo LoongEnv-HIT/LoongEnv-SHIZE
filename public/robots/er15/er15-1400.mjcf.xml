@@ -1,0 +1,66 @@
+<mujoco model="ER15-1400">
+  <compiler angle="radian" autolimits="true"/>
+
+  <statistic center="0 0 0.8" extent="2.2"/>
+
+  <visual>
+    <quality shadowsize="4096"/>
+    <headlight ambient="0.32 0.32 0.32" diffuse="0.85 0.85 0.85" specular="0.35 0.35 0.35"/>
+    <rgba haze="0.11 0.19 0.31 1"/>
+    <global azimuth="120" elevation="-18"/>
+  </visual>
+
+  <asset>
+    <texture name="skybox" type="skybox" builtin="gradient" rgb1="0.16 0.28 0.44" rgb2="0.74 0.84 0.95" width="512" height="3072"/>
+    <texture name="floor_grid" type="2d" builtin="checker" rgb1="0.18 0.34 0.57" rgb2="0.29 0.46 0.71" width="512" height="512" mark="edge" markrgb="0.90 0.94 1.00"/>
+    <material name="floor_mat" texture="floor_grid" texrepeat="12 12" texuniform="true" reflectance="0.18" shininess="0.15" specular="0.08"/>
+    <material name="kuka_orange" rgba="1.00 0.48 0.02 1" specular="0.55" shininess="0.55"/>
+    <material name="graphite" rgba="0.20 0.21 0.24 1" specular="0.32" shininess="0.22"/>
+    <material name="charcoal" rgba="0.30 0.31 0.34 1" specular="0.28" shininess="0.18"/>
+    <material name="machined_steel" rgba="0.76 0.78 0.81 1" specular="0.82" shininess="0.85"/>
+    <mesh name="b_link" file="b_link.STL"/>
+    <mesh name="l_1" file="l_1.STL"/>
+    <mesh name="l_2" file="l_2.STL"/>
+    <mesh name="l_3" file="l_3.STL"/>
+    <mesh name="l_4" file="l_4.STL"/>
+    <mesh name="l_5" file="l_5.STL"/>
+    <mesh name="l_6" file="l_6.STL"/>
+  </asset>
+
+  <worldbody>
+    <light name="key_light" pos="2.4 -1.8 3.6" dir="-0.55 0.35 -1" diffuse="1.0 0.98 0.94" specular="0.45 0.45 0.45" directional="true" castshadow="true"/>
+    <light name="fill_light" pos="-2.6 2.1 2.8" dir="0.55 -0.40 -1" diffuse="0.36 0.41 0.50" specular="0.10 0.10 0.10" directional="true"/>
+    <geom name="floor" type="plane" pos="0 0 0" size="6 6 0.05" material="floor_mat"/>
+    <geom type="mesh" material="graphite" mesh="b_link"/>
+    <body name="link_1" pos="0 0 0.43">
+      <inertial pos="0.09835 -0.02908 -0.0995" quat="0.934022 0.0709797 0.344228 -0.0638068" mass="54.52" diaginertia="1.57017 1.42487 0.582675"/>
+      <joint name="joint_1" pos="0 0 0" axis="0 0 1" range="-2.967 2.967"/>
+      <geom pos="0 0 -0.43" quat="1 0 0 0" type="mesh" material="kuka_orange" mesh="l_1"/>
+      <body name="link_2" pos="0.18 0 0" quat="0.5 0.5 -0.5 0.5">
+        <inertial pos="0.25263 -0.00448 0.15471" quat="0.00975051 0.695349 0.0192882 0.718347" mass="11.11" diaginertia="0.602971 0.582765 0.0443882"/>
+        <joint name="joint_2" pos="0 0 0" axis="0 0 1" range="-2.7925 1.5708"/>
+        <geom pos="0 0 0" quat="0.707107 0 0 -0.707107" type="mesh" material="kuka_orange" mesh="l_2"/>
+        <body name="link_3" pos="0.58 0 0">
+          <inertial pos="0.03913 -0.02495 0.03337" quat="0.887953 -0.0301162 -0.0105448 0.458826" mass="25.03" diaginertia="0.435155 0.287985 0.240747"/>
+          <joint name="joint_3" pos="0 0 0" axis="0 0 1" range="-1.4835 3.0543"/>
+          <geom quat="0.707107 0 0 -0.707107" type="mesh" material="kuka_orange" mesh="l_3"/>
+          <body name="link_4" pos="0.16 -0.64 0" quat="2.08523e-10 -2.08523e-10 -0.707107 0.707107">
+            <inertial pos="-0.00132 -0.0012 -0.30035" quat="0.999952 0.00962981 -0.001782 -0.000972932" mass="10.81" diaginertia="0.280666 0.271512 0.0441655"/>
+            <joint name="joint_4" pos="0 0 0" axis="0 0 1" range="-3.316 3.316"/>
+            <geom pos="0 0 -0.64" quat="2.08523e-10 0.707107 -0.707107 -2.08523e-10" type="mesh" material="kuka_orange" mesh="l_4"/>
+            <body name="link_5" quat="2.08523e-10 -2.08523e-10 -0.707107 0.707107">
+              <inertial pos="0.0004 -0.03052 0.01328" quat="0.542754 0.83988 -0.00430534 0.00104246" mass="4.48" diaginertia="0.0171016 0.0148763 0.0101901"/>
+              <joint name="joint_5" pos="0 0 0" axis="0 0 1" range="-2.2689 2.2689"/>
+              <geom quat="0.707107 0 0 -0.707107" type="mesh" material="charcoal" mesh="l_5"/>
+              <body name="link_6" pos="0 -0.116 0" quat="0.707107 0.707107 0 0">
+                <inertial pos="0 0 0" quat="0.152312 0.688563 -0.0933315 0.702831" mass="0.28" diaginertia="0.00154943 0.000787579 0.000761856"/>
+                <joint name="joint_6" pos="0 0 0" axis="0 0 1" range="-6.2832 6.2832"/>
+                <geom quat="2.08523e-10 0.707107 0.707107 2.08523e-10" type="mesh" material="machined_steel" mesh="l_6"/>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

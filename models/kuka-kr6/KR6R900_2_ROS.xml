@@ -1,0 +1,66 @@
+<mujoco model="KUKA-KR6">
+  <compiler angle="radian" autolimits="true" inertiafromgeom="true" />
+  <option gravity="0 0 0" integrator="implicitfast" />
+
+  <default>
+    <joint damping="8" armature="0.2" />
+    <geom type="mesh" contype="0" conaffinity="0" rgba="1 0.5 0 1" />
+    <position kp="120" />
+  </default>
+
+  <asset>
+    <mesh name="base_link_mesh" file="base_link.STL" />
+    <mesh name="link_1_mesh" file="link_1.STL" />
+    <mesh name="link_2_mesh" file="link_2.STL" />
+    <mesh name="link_3_mesh" file="link_3.STL" />
+    <mesh name="link_4_mesh" file="link_4.STL" />
+    <mesh name="link_5_mesh" file="link_5.STL" />
+    <mesh name="link_6_mesh" file="link_6.STL" />
+  </asset>
+
+  <worldbody>
+    <body name="base_link">
+      <geom mesh="base_link_mesh" rgba="0.63 0.63 0.63 1" />
+
+      <body name="link_1" pos="0 0 0.4">
+        <joint name="joint_a1" type="hinge" axis="0 0 -1" range="-2.967 2.967" />
+        <geom mesh="link_1_mesh" rgba="1 0.5 0 1" />
+
+        <body name="link_2" pos="0.025 0 0">
+          <joint name="joint_a2" type="hinge" axis="0 1 0" range="-3.316 0.785" />
+          <geom mesh="link_2_mesh" rgba="1 0.5 0 1" />
+
+          <body name="link_3" pos="0.455 0 0">
+            <joint name="joint_a3" type="hinge" axis="0 1 0" range="-2.094 2.723" />
+            <geom mesh="link_3_mesh" rgba="1 0.5 0 1" />
+
+            <body name="link_4" pos="0 0 0.025">
+              <joint name="joint_a4" type="hinge" axis="-1 0 0" range="-3.229 3.229" />
+              <geom mesh="link_4_mesh" rgba="1 0.5 0 1" />
+
+              <body name="link_5" pos="0.42 0 0">
+                <joint name="joint_a5" type="hinge" axis="0 1 0" range="-2.094 2.094" />
+                <geom mesh="link_5_mesh" rgba="1 0.5 0 1" />
+
+                <body name="link_6" pos="0.09 0 0">
+                  <joint name="joint_a6" type="hinge" axis="-1 0 0" range="-6.108 6.108" />
+                  <geom mesh="link_6_mesh" rgba="0.63 0.63 0.63 1" />
+                  <site name="tcp" pos="0.08 0 0" size="0.02" rgba="1 0.2 0.2 0.6" group="1" />
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="joint_a1_act" joint="joint_a1" />
+    <position name="joint_a2_act" joint="joint_a2" />
+    <position name="joint_a3_act" joint="joint_a3" />
+    <position name="joint_a4_act" joint="joint_a4" />
+    <position name="joint_a5_act" joint="joint_a5" />
+    <position name="joint_a6_act" joint="joint_a6" />
+  </actuator>
+</mujoco>

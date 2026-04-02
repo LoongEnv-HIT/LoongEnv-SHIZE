@@ -1,0 +1,66 @@
+<mujoco model="T12A-14">
+  <compiler angle="radian" autolimits="true" inertiafromgeom="true" />
+  <option gravity="0 0 0" integrator="implicitfast" />
+
+  <default>
+    <joint damping="8" armature="0.25" />
+    <geom type="mesh" contype="0" conaffinity="0" rgba="0.88 0.88 0.9 1" />
+    <position kp="120" />
+  </default>
+
+  <asset>
+    <mesh name="base_link_mesh" file="base_link.STL" />
+    <mesh name="link_1_mesh" file="link_1.STL" />
+    <mesh name="link_2_mesh" file="link_2.STL" />
+    <mesh name="link_3_mesh" file="link_3.STL" />
+    <mesh name="link_4_mesh" file="link_4.STL" />
+    <mesh name="link_5_mesh" file="link_5.STL" />
+    <mesh name="link_6_mesh" file="link_6.STL" />
+  </asset>
+
+  <worldbody>
+    <body name="base_link">
+      <geom mesh="base_link_mesh" rgba="0.98 0.98 0.98 1" />
+
+      <body name="link_1" pos="0 0 0">
+        <joint name="joint_1" type="hinge" axis="0 0 1" range="-2.967 2.967" />
+        <geom mesh="link_1_mesh" rgba="0.98 0.98 0.98 1" />
+
+        <body name="link_2" pos="0.185 0 0.434" euler="1.5707963267949 0 0">
+          <joint name="joint_2" type="hinge" axis="0 0 1" range="-1.745 1.745" />
+          <geom mesh="link_2_mesh" rgba="0.87 0.87 0.89 1" />
+
+          <body name="link_3" pos="0 0.6 0">
+            <joint name="joint_3" type="hinge" axis="0 0 1" range="-2.792 2.792" />
+            <geom mesh="link_3_mesh" rgba="0.67 0.7 0.76 1" />
+
+            <body name="link_4" pos="0 0.2 0" euler="0 1.5707963267949 0">
+              <joint name="joint_4" type="hinge" axis="0 0 1" range="-3.316 3.316" />
+              <geom mesh="link_4_mesh" rgba="0.65 0.62 0.59 1" />
+
+              <body name="link_5" pos="0 0 0.65" euler="0 -1.5707963267949 0">
+                <joint name="joint_5" type="hinge" axis="0 0 1" range="-2.268 2.268" />
+                <geom mesh="link_5_mesh" rgba="0.7 0.7 0.7 1" />
+
+                <body name="link_6" pos="0.0919980762113533 0 0" euler="0 1.5707963267949 0">
+                  <joint name="joint_6" type="hinge" axis="0 0 1" range="-6.283 6.283" />
+                  <geom mesh="link_6_mesh" rgba="0.65 0.62 0.59 1" />
+                  <site name="tcp" pos="0 0 0.16" size="0.02" rgba="1 0.2 0.2 0.6" group="1" />
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="joint_1_act" joint="joint_1" />
+    <position name="joint_2_act" joint="joint_2" />
+    <position name="joint_3_act" joint="joint_3" />
+    <position name="joint_4_act" joint="joint_4" />
+    <position name="joint_5_act" joint="joint_5" />
+    <position name="joint_6_act" joint="joint_6" />
+  </actuator>
+</mujoco>

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fixed-toppra-mvc-ruckig"
+version = "0.1.0"
+description = "Reusable path smoothing + TOPPRA MVC + segmented Ruckig pipeline with robustness fixes."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.23,<2.0",
+  "pandas>=1.5",
+  "scipy>=1.10,<2.0",
+  "toppra>=0.6",
+  "ecos>=2.0",
+  "ruckig>=0.9",
+  "roboticstoolbox-python>=1.1",
+  "spatialmath-python>=1.1",
+]
+
+[project.scripts]
+fixed-toppra-mvc-ruckig = "fixed_toppra_mvc_ruckig.cli:main"
+
+[tool.setuptools]
+packages = ["fixed_toppra_mvc_ruckig"]
+include-package-data = false
+
+[tool.setuptools.package-dir]
+fixed_toppra_mvc_ruckig = "."

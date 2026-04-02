@@ -1,0 +1,125 @@
+<robot name="matrix">
+
+<link name="base_link">
+  <origin xyz="0 0 0" />
+  <visual>
+    <origin xyz="0 0 0.2826" rpy="3.1415926 0 0" />
+    <geometry>
+      <mesh filename="meshes/mp600_sne_v30.stl" scale="0.001 0.001 0.001" />
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0.2826" rpy="3.1415926 0 0" />
+    <geometry>
+      <mesh filename="meshes/mp600_sne_v30.stl" scale="0.001 0.001 0.001" />
+    </geometry>
+  </collision>
+</link>
+
+<link name="scan_front">
+    <origin xyz="0 0 0" />
+</link>
+
+<link name="scan_back">
+  <origin xyz="0 0 0" />
+</link>
+
+<link name="depth_front_0">
+    <origin xyz="0 0 0" />
+</link>
+
+<link name="smart_camera">
+    <origin xyz="0 0 0" />
+</link>
+
+<link name="camera_ground">
+    <origin xyz="0 0 0" />
+</link>
+
+<link name="camera_ceil">
+  <origin xyz="0 0 0" />
+</link>
+
+<link name="solid_6785">
+  <visual>
+    <origin xyz="0 0 1.9808802e-05" rpy="-3.1415894 0 0"/>
+    <geometry>
+      <cylinder radius="0.322" length="0.018"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="0 0 1.9808802e-05" rpy="-3.1415894 0 0"/>
+    <geometry>
+      <cylinder radius="0.322" length="0.018"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="solid_6803">
+  <visual>
+    <origin xyz="0 0 0.01" rpy="3.1407962 0 0"/>
+    <geometry>
+      <cylinder radius="0.322" length="0.003"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0.01" rpy="3.1407962 0 0"/>
+    <geometry>
+      <cylinder radius="0.322" length="0.003"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="base_link_scan_front_joint" type="fixed">
+  <origin xyz="0.360 0.0 0.181" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="scan_front"/>
+</joint>
+
+<joint name="base_link_scan_back_joint" type="fixed">
+  <origin xyz="-0.374 0.0 0.181" rpy="0 0 3.1415926"/>
+  <parent link="base_link"/>
+  <child link="scan_back"/>
+</joint>
+
+<joint name="base_link_smart_camera_ex_joint" type="fixed">
+  <origin xyz="0.447 0 0.147" rpy="-1.5708 0 -1.5708"/>
+  <parent link="base_link"/>
+  <child link="smart_camera"/>
+</joint>
+
+<joint name="base_link_depth_front_0_joint" type="fixed">
+  <origin xyz="0.453 0 0.105" rpy="-1.309 0 -1.5708"/>
+  <parent link="base_link"/>
+  <child link="depth_front_0"/>
+</joint>
+
+<joint name="base_link_camera_ground_joint" type="fixed">
+  <origin xyz="0 0 0.155" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="camera_ground"/>
+</joint>
+
+<joint name="base_link_camera_ceil_joint" type="fixed">
+  <origin xyz="0 0 0.10" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="camera_ceil"/>
+</joint>
+
+<joint name="linear_motor" type="prismatic">
+  <parent link="base_link"/>
+  <child link="solid_6785"/>
+  <axis xyz="0 0 1"/>
+  <origin xyz="0 0 0.31461018" rpy="0 0 0.00044399596"/>
+  <limit effort="200" velocity="10"/>
+</joint>
+
+<joint name="turn_plate_rotational_motor" type="continuous">
+  <parent link="solid_6785"/>
+  <child link="solid_6803"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="10" velocity="10"/>
+  <origin xyz="0 0 0.0003898088" rpy="0 0 0.00029365366"/>
+</joint>
+
+</robot>
