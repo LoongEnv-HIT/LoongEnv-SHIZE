@@ -1,6 +1,6 @@
 ﻿# LoongEnv-SHIZE
 
-LoongEnv desktop workspace for robot simulation, trajectory planning, and diagnostics.
+LoongEnv Desktop Workspace: Designed for robot simulation, trajectory planning, and diagnostics. As the underlying algorithms require Python support, a real-time frontend preview is currently not available.
 
 ## What is included
 
