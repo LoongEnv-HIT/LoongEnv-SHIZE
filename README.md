@@ -63,30 +63,6 @@ npm run dev:stack
 
 ## 封装发布工作流（GitHub Actions）
 
-仓库已内置发布工作流：
-
-- Workflow 文件：`.github/workflows/release-package.yml`
-- 触发方式：
-- 推送 tag（`v*`）时自动执行，并自动创建 GitHub Release
-- 手动触发（`workflow_dispatch`）时执行打包，可选是否创建 Release
-
-工作流内容：
-
-- 安装依赖并执行 `npm run lint`、`npm run build`
-- 生成发布包：`LoongEnv-SHIZE-<version>.zip`
-- 生成校验文件：`LoongEnv-SHIZE-<version>.sha256`
-- 上传到 Actions Artifacts
-- 在满足条件时发布到 GitHub Releases
-
-手动发布建议：
-
-1. 进入 GitHub -> `Actions` -> `Release Package`
-2. 点击 `Run workflow`
-3. 填写 `release_tag`（例如 `v1.0.0`）
-4. 将 `create_release` 设为 `true`
-
-你指定的中文“封装发布工作流”文档也已收录：
-
 - [Figs/封装发布工作流.md](./Figs/封装发布工作流.md)
 
 ## 运行说明（Design 打磨规划）
