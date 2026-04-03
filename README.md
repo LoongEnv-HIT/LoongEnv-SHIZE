@@ -85,6 +85,10 @@ npm run dev:stack
 3. 填写 `release_tag`（例如 `v1.0.0`）
 4. 将 `create_release` 设为 `true`
 
+你指定的中文“封装发布工作流”文档也已收录：
+
+- [Figs/封装发布工作流.md](./Figs/封装发布工作流.md)
+
 ## 运行说明（Design 打磨规划）
 
 1. 启动：`npm run dev:stack`
