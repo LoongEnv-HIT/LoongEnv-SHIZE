@@ -1,0 +1,87 @@
+{
+  "summary": {
+    "inputFileName": "er15_waypoints_sample.csv",
+    "duration": 14.767999999999523,
+    "samples": 7385,
+    "uniformExportDtS": 0.004,
+    "uniformExportSamples": 3693,
+    "ssMode": "arc",
+    "minimaThresholdMode": "mean",
+    "minimaIdx": [
+      87,
+      197,
+      399,
+      598,
+      700,
+      799,
+      811,
+      899
+    ],
+    "minimaV": [
+      1.1702759068548925,
+      1.0291680836211885,
+      1.141185606893595,
+      0.9331072450236135,
+      0.870324605806403,
+      0.32604796330279384,
+      0.7553272341472393,
+      0.3019988508395723
+    ],
+    "segmentPoints": [
+      88,
+      198,
+      400,
+      599,
+      701,
+      800,
+      812,
+      900,
+      1000
+    ],
+    "segmentTargets": [
+      0.1027803617441769,
+      0.23327861239818742,
+      0.5166886822955677,
+      0.7463049796561042,
+      0.8410266554907772,
+      0.9098013662333327,
+      0.9164029852931866,
+      0.9610415849583848,
+      1.0
+    ],
+    "segmentTargetVelocities": [
+      0.03141818890692261,
+      0.05431149339753766,
+      0.08571700244215355,
+      0.1056713996205691,
+      0.10567139962056911,
+      0.10567139962056911,
+      0.10567139962056911,
+      0.10567139962056911,
+      0.10567139962056911
+    ],
+    "config": {
+      "resample_points": 1000,
+      "smooth_passes": 40,
+      "smooth_blend": 0.49,
+      "dt": 0.002,
+      "v_max": 0.02,
+      "a_max": 0.02,
+      "j_max": 0.04,
+      "minima_count": null,
+      "minima_gap": 12,
+      "minima_threshold_mode": "mean",
+      "minima_max_value": null,
+      "junction_velocity_scale": 0.8
+    }
+  },
+  "algorithm": {
+    "name": "fixed_toppra_mvc_ruckig",
+    "pipeline": "TOPPRA + MVC + segmented Ruckig"
+  },
+  "chartPointCount": {
+    "mvc": 501,
+    "pathProfile": 494,
+    "uniformSamples": 3693
+  }
+}
