@@ -66,6 +66,8 @@ Design 侧采用阶段化流水线（Node sidecar 编排）：
 
 演示摘要：见 [planning_demo_summary.json](./planning_demo_summary.json)
 
+说明：本次图像已切到与前端一致的默认参数（`smooth_passes=60`, `dt=0.001`），并增加输入 waypoint 对照图，避免“曲线看起来不对但缺少参照”的歧义。
+
 ### 5.1 MVC 上包络
 
 ![MVC](./images/planning_mvc.svg)
@@ -81,6 +83,10 @@ Design 侧采用阶段化流水线（Node sidecar 编排）：
 ### 5.4 六关节统一采样轨迹 qUniform(t)
 
 ![Joint Uniform](./images/planning_joint_uniform.svg)
+
+### 5.5 六关节对照图（qUniform vs 输入 waypoints）
+
+![Joint Validation](./images/planning_joint_validation.svg)
 
 ## 6. 复现命令
 

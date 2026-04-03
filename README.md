@@ -69,3 +69,4 @@ npm run dev:stack
 Preview:
 
 ![MVC Preview](./docs/images/planning_mvc.svg)
+![Joint Validation Preview](./docs/images/planning_joint_validation.svg)

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import importlib.util
 import json
@@ -165,10 +165,10 @@ def _json_safe(value: Any) -> Any:
     if isinstance(value, (np.floating, float)):
         fv = float(value)
         return fv if math.isfinite(fv) else None
-    if isinstance(value, (np.integer, int)):
-        return int(value)
     if isinstance(value, (np.bool_, bool)):
         return bool(value)
+    if isinstance(value, (np.integer, int)):
+        return int(value)
     return value
 
 
