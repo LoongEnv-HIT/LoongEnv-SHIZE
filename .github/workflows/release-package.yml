@@ -1,0 +1,105 @@
+name: Release Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Release tag (for manual release), e.g. v1.0.0'
+        required: false
+        type: string
+      create_release:
+        description: 'Publish GitHub Release (requires release_tag in manual run)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run lint
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Resolve package version
+        shell: bash
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/}"
+            TAG_NAME="${VERSION}"
+          elif [[ -n "${{ github.event.inputs.release_tag }}" ]]; then
+            VERSION="${{ github.event.inputs.release_tag }}"
+            TAG_NAME="${VERSION}"
+          else
+            VERSION="manual-${GITHUB_RUN_NUMBER}-${GITHUB_SHA:0:7}"
+            TAG_NAME=""
+          fi
+          echo "RELEASE_VERSION=${VERSION}" >> "${GITHUB_ENV}"
+          echo "RELEASE_TAG=${TAG_NAME}" >> "${GITHUB_ENV}"
+
+      - name: Create release bundle
+        shell: bash
+        run: |
+          BUNDLE_DIR="release/LoongEnv-SHIZE-${RELEASE_VERSION}"
+          mkdir -p "${BUNDLE_DIR}"
+
+          cp -r dist "${BUNDLE_DIR}/dist"
+          cp -r public "${BUNDLE_DIR}/public"
+          cp -r server "${BUNDLE_DIR}/server"
+          cp -r scripts "${BUNDLE_DIR}/scripts"
+          cp -r fixed_toppra_mvc_ruckig "${BUNDLE_DIR}/fixed_toppra_mvc_ruckig"
+
+          for file in package.json package-lock.json README.md .env.example vite.config.ts tsconfig.json; do
+            if [[ -f "${file}" ]]; then
+              cp "${file}" "${BUNDLE_DIR}/${file}"
+            fi
+          done
+
+          if [[ -d "Figs" ]]; then
+            cp -r Figs "${BUNDLE_DIR}/Figs"
+          fi
+
+          cd release
+          zip -r "../LoongEnv-SHIZE-${RELEASE_VERSION}.zip" "LoongEnv-SHIZE-${RELEASE_VERSION}"
+          cd ..
+          sha256sum "LoongEnv-SHIZE-${RELEASE_VERSION}.zip" > "LoongEnv-SHIZE-${RELEASE_VERSION}.sha256"
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LoongEnv-SHIZE-${{ env.RELEASE_VERSION }}
+          path: |
+            LoongEnv-SHIZE-${{ env.RELEASE_VERSION }}.zip
+            LoongEnv-SHIZE-${{ env.RELEASE_VERSION }}.sha256
+          if-no-files-found: error
+
+      - name: Publish GitHub release
+        if: ${{ (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && inputs.create_release && inputs.release_tag != '') }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: LoongEnv-SHIZE ${{ env.RELEASE_VERSION }}
+          generate_release_notes: true
+          files: |
+            LoongEnv-SHIZE-${{ env.RELEASE_VERSION }}.zip
+            LoongEnv-SHIZE-${{ env.RELEASE_VERSION }}.sha256
