@@ -8,6 +8,11 @@ Outputs:
 - docs/images/planning_profile_sd.svg
 - docs/images/planning_joint_uniform.svg
 - docs/images/planning_joint_validation.svg
+- docs/images/planning_mvc.png
+- docs/images/planning_profile_s.png
+- docs/images/planning_profile_sd.png
+- docs/images/planning_joint_uniform.png
+- docs/images/planning_joint_validation.png
 """
 
 from __future__ import annotations
@@ -17,7 +22,11 @@ import json
 import math
 from pathlib import Path
 
+import matplotlib
 import numpy as np
+from matplotlib import pyplot as plt
+
+matplotlib.use("Agg")
 
 DEFAULT_DOC_CONFIG = {
     "resample_points": 1000,
@@ -290,6 +299,68 @@ def write_joint_validation_svg(path, title, q_uniform, waypoints_original):
     path.write_text(svg, encoding="utf-8")
 
 
+def write_single_series_png(path, title, x_label, y_label, points, x_key, y_key, color="#0b7ad1"):
+    pts = downsample(points, 1200)
+    xs = np.asarray([float(p[x_key]) for p in pts], dtype=float)
+    ys = np.asarray([float(p[y_key]) for p in pts], dtype=float)
+    fig = plt.figure(figsize=(12, 4.2), dpi=160)
+    ax = fig.add_subplot(1, 1, 1)
+    ax.plot(xs, ys, color=color, linewidth=2.0)
+    ax.set_title(title)
+    ax.set_xlabel(x_label)
+    ax.set_ylabel(y_label)
+    ax.grid(True, alpha=0.25, linestyle="--", linewidth=0.7)
+    fig.tight_layout()
+    fig.savefig(path, bbox_inches="tight")
+    plt.close(fig)
+
+
+def write_multi_joint_png(path, title, t_values, q_values):
+    t_values = np.asarray(t_values, dtype=float)
+    q_values = np.asarray(q_values, dtype=float)
+    idx = downsample(list(range(len(t_values))), 1200)
+    ts = t_values[idx]
+    qs = q_values[idx, :6]
+    colors = ["#0b7ad1", "#16a34a", "#7c3aed", "#d97706", "#dc2626", "#0ea5a8"]
+
+    fig = plt.figure(figsize=(12, 4.6), dpi=160)
+    ax = fig.add_subplot(1, 1, 1)
+    for j in range(6):
+        ax.plot(ts, qs[:, j], color=colors[j], linewidth=1.5, label=f"J{j+1}")
+    ax.set_title(title)
+    ax.set_xlabel("Time [s]")
+    ax.set_ylabel("Joint Position [rad]")
+    ax.grid(True, alpha=0.25, linestyle="--", linewidth=0.7)
+    ax.legend(ncols=3, fontsize=8, frameon=False, loc="upper right")
+    fig.tight_layout()
+    fig.savefig(path, bbox_inches="tight")
+    plt.close(fig)
+
+
+def write_joint_validation_png(path, title, q_uniform, waypoints_original):
+    q_uniform = np.asarray(q_uniform, dtype=float)
+    waypoints_original = np.asarray(waypoints_original, dtype=float)
+    n_u = q_uniform.shape[0]
+    n_w = waypoints_original.shape[0]
+    u_u = np.linspace(0.0, 1.0, n_u)
+    u_w = np.linspace(0.0, 1.0, n_w)
+    idx = downsample(list(range(n_u)), 1200)
+    colors = ["#0b7ad1", "#16a34a", "#7c3aed", "#d97706", "#dc2626", "#0ea5a8"]
+
+    fig, axes = plt.subplots(6, 1, figsize=(12, 10), dpi=160, sharex=True)
+    fig.suptitle(title, y=0.995)
+    for j, ax in enumerate(axes):
+        ax.plot(u_u[idx], q_uniform[idx, j], color=colors[j], linewidth=1.4, label=f"J{j+1} qUniform")
+        ax.scatter(u_w, waypoints_original[:, j], color="#0f172a", s=10, alpha=0.75, label="Input waypoint")
+        ax.grid(True, alpha=0.22, linestyle="--", linewidth=0.6)
+        ax.legend(loc="upper right", fontsize=7, frameon=False)
+        ax.set_ylabel(f"J{j+1}")
+    axes[-1].set_xlabel("Normalized progress u (0..1)")
+    fig.tight_layout()
+    fig.savefig(path, bbox_inches="tight")
+    plt.close(fig)
+
+
 def main() -> None:
     repo = Path(__file__).resolve().parent.parent
     run_bridge = load_bridge_run(repo)
@@ -381,6 +452,52 @@ def main() -> None:
 
     write_joint_validation_svg(
         images_dir / "planning_joint_validation.svg",
+        "Joint Validation: qUniform vs Input Waypoints (Demo Run)",
+        result["trajectory"]["qUniform"],
+        input_waypoints,
+    )
+
+    write_single_series_png(
+        images_dir / "planning_mvc.png",
+        "MVC Upper Envelope (Demo Run)",
+        "Path coordinate s",
+        "Velocity upper bound",
+        result["mvc"]["chart"],
+        "x",
+        "y",
+    )
+
+    write_single_series_png(
+        images_dir / "planning_profile_s.png",
+        "Path Profile s(t) (Demo Run)",
+        "Time [s]",
+        "Path coordinate s",
+        result["pathProfile"]["chart"],
+        "t",
+        "s",
+        color="#16a34a",
+    )
+
+    write_single_series_png(
+        images_dir / "planning_profile_sd.png",
+        "Path Speed sd(t) (Demo Run)",
+        "Time [s]",
+        "Path speed sd",
+        result["pathProfile"]["chart"],
+        "t",
+        "sd",
+        color="#dc2626",
+    )
+
+    write_multi_joint_png(
+        images_dir / "planning_joint_uniform.png",
+        "Uniform Playback Joint Trajectory qUniform(t) (Demo Run)",
+        result["trajectory"]["tUniform"],
+        result["trajectory"]["qUniform"],
+    )
+
+    write_joint_validation_png(
+        images_dir / "planning_joint_validation.png",
         "Joint Validation: qUniform vs Input Waypoints (Demo Run)",
         result["trajectory"]["qUniform"],
         input_waypoints,

@@ -70,23 +70,23 @@ Design 侧采用阶段化流水线（Node sidecar 编排）：
 
 ### 5.1 MVC 上包络
 
-![MVC](./images/planning_mvc.svg)
+![MVC](./images/planning_mvc.png)
 
 ### 5.2 路径坐标曲线 s(t)
 
-![Path S](./images/planning_profile_s.svg)
+![Path S](./images/planning_profile_s.png)
 
 ### 5.3 路径速度曲线 sd(t)
 
-![Path Sd](./images/planning_profile_sd.svg)
+![Path Sd](./images/planning_profile_sd.png)
 
 ### 5.4 六关节统一采样轨迹 qUniform(t)
 
-![Joint Uniform](./images/planning_joint_uniform.svg)
+![Joint Uniform](./images/planning_joint_uniform.png)
 
 ### 5.5 六关节对照图（qUniform vs 输入 waypoints）
 
-![Joint Validation](./images/planning_joint_validation.svg)
+![Joint Validation](./images/planning_joint_validation.png)
 
 ## 6. 复现命令
 
