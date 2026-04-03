@@ -560,7 +560,7 @@ export const DesignPlugin: Plugin = {
                         <XAxis dataKey="s" tick={{ fontSize: 10 }} />
                         <YAxis tick={{ fontSize: 10 }} />
                         <Tooltip />
-                        <Line type="monotone" dataKey="mvc" stroke="#007acc" dot={false} strokeWidth={1.6} />
+                        <Line type="monotone" dataKey="mvc" stroke="#007acc" dot={false} strokeWidth={1.6} isAnimationActive={false} />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
@@ -573,8 +573,8 @@ export const DesignPlugin: Plugin = {
                         <XAxis dataKey="t" tick={{ fontSize: 10 }} />
                         <YAxis tick={{ fontSize: 10 }} />
                         <Tooltip />
-                        <Line type="monotone" dataKey="s" stroke="#059669" dot={false} strokeWidth={1.4} />
-                        <Line type="monotone" dataKey="sd" stroke="#dc2626" dot={false} strokeWidth={1.2} />
+                        <Line type="monotone" dataKey="s" stroke="#059669" dot={false} strokeWidth={1.4} isAnimationActive={false} />
+                        <Line type="monotone" dataKey="sd" stroke="#dc2626" dot={false} strokeWidth={1.2} isAnimationActive={false} />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>

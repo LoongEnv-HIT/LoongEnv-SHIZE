@@ -17,21 +17,32 @@ export function CollapsibleSection({
   className,
   contentClassName,
 }: CollapsibleSectionProps) {
+  const [isOpen, setIsOpen] = React.useState(defaultOpen);
+
+  React.useEffect(() => {
+    setIsOpen(defaultOpen);
+  }, [defaultOpen]);
+
   return (
-    <details
-      open={defaultOpen}
+    <section
       className={cn(
-        "group/details overflow-hidden rounded-sm border border-[#e5e5e5] bg-white shadow-sm",
+        'overflow-hidden rounded-sm border border-[#e5e5e5] bg-white shadow-sm',
         className
       )}
     >
-      <summary className="flex h-8 list-none items-center gap-1.5 bg-[#f3f3f3] px-2 text-[#333333] cursor-pointer transition-colors hover:bg-[#e8e8e8]">
-        <ChevronRight className="h-4 w-4 text-[#6f6f6f] transition-transform group-open/details:rotate-90" />
+      <button
+        type="button"
+        onClick={() => setIsOpen((previous) => !previous)}
+        className="flex h-8 w-full items-center gap-1.5 bg-[#f3f3f3] px-2 text-left text-[#333333] transition-colors hover:bg-[#e8e8e8]"
+      >
+        <ChevronRight className={cn('h-4 w-4 text-[#6f6f6f] transition-transform', isOpen && 'rotate-90')} />
         <span className="text-[10px] font-bold uppercase tracking-wider text-[#4b5563]">{title}</span>
-      </summary>
-      <div className={cn("border-t border-[#ececec] bg-white p-3.5", contentClassName)}>
-        {children}
-      </div>
-    </details>
+      </button>
+      {isOpen && (
+        <div className={cn('border-t border-[#ececec] bg-white p-3.5', contentClassName)}>
+          {children}
+        </div>
+      )}
+    </section>
   );
 }

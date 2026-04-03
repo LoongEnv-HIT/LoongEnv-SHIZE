@@ -429,6 +429,7 @@ export const DiagnosePlugin: Plugin = {
                           stroke={joint.color}
                           strokeWidth={1.5}
                           dot={false}
+                          isAnimationActive={false}
                         />
                       ))}
                     </LineChart>
@@ -510,8 +511,8 @@ export const DiagnosePlugin: Plugin = {
                           fontSize: '9px',
                         }}
                       />
-                      <Area type="monotone" dataKey="tau" stroke="#007acc" strokeWidth={1.5} fill="#007acc" fillOpacity={0.1} />
-                      <Area type="monotone" dataKey="q" stroke="#388a3c" strokeWidth={1.5} fill="#388a3c" fillOpacity={0.05} />
+                      <Area type="monotone" dataKey="tau" stroke="#007acc" strokeWidth={1.5} fill="#007acc" fillOpacity={0.1} isAnimationActive={false} />
+                      <Area type="monotone" dataKey="q" stroke="#388a3c" strokeWidth={1.5} fill="#388a3c" fillOpacity={0.05} isAnimationActive={false} />
                     </AreaChart>
                   </ResponsiveContainer>
                 </section>
@@ -526,9 +527,9 @@ export const DiagnosePlugin: Plugin = {
                       <YAxis stroke="#94a3b8" fontSize={9} tickLine={false} axisLine={false} />
                       <Tooltip />
                       <Legend verticalAlign="top" height={24} iconType="line" wrapperStyle={{ fontSize: '10px' }} />
-                      <Line type="monotone" dataKey="q" stroke="#007acc" strokeWidth={1.4} dot={false} />
-                      <Line type="monotone" dataKey="dq" stroke="#16a34a" strokeWidth={1.2} dot={false} />
-                      <Line type="monotone" dataKey="error" stroke="#dc2626" strokeWidth={1.2} dot={false} />
+                      <Line type="monotone" dataKey="q" stroke="#007acc" strokeWidth={1.4} dot={false} isAnimationActive={false} />
+                      <Line type="monotone" dataKey="dq" stroke="#16a34a" strokeWidth={1.2} dot={false} isAnimationActive={false} />
+                      <Line type="monotone" dataKey="error" stroke="#dc2626" strokeWidth={1.2} dot={false} isAnimationActive={false} />
                     </LineChart>
                   </ResponsiveContainer>
                 </section>
@@ -569,7 +570,7 @@ export const DiagnosePlugin: Plugin = {
                       <XAxis dataKey="time" stroke="#94a3b8" fontSize={9} tickLine={false} axisLine={false} />
                       <YAxis domain={[0, 1]} stroke="#94a3b8" fontSize={9} tickLine={false} axisLine={false} />
                       <Tooltip />
-                      <Line type="monotone" dataKey="risk" stroke="#d97706" strokeWidth={1.5} dot={false} />
+                      <Line type="monotone" dataKey="risk" stroke="#d97706" strokeWidth={1.5} dot={false} isAnimationActive={false} />
                     </LineChart>
                   </ResponsiveContainer>
                 </section>
@@ -583,7 +584,7 @@ export const DiagnosePlugin: Plugin = {
                       <XAxis dataKey="joint" stroke="#94a3b8" fontSize={9} tickLine={false} axisLine={false} />
                       <YAxis domain={[0, 100]} stroke="#94a3b8" fontSize={9} tickLine={false} axisLine={false} />
                       <Tooltip />
-                      <Bar dataKey="load" fill="#007acc" radius={[2, 2, 0, 0]} />
+                      <Bar dataKey="load" fill="#007acc" radius={[2, 2, 0, 0]} isAnimationActive={false} />
                     </BarChart>
                   </ResponsiveContainer>
                 </section>
