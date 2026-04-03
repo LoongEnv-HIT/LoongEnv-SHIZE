@@ -61,12 +61,3 @@ npm run dev:stack
 - First version uses local one-shot planning requests (no queue/streaming).
 - Planning output drives the center 3D simulation playback (`qUniform/tUniform`).
 
-## Algorithm Docs & Effect Images
-
-- Detailed algorithm design doc: [docs/ALGORITHM.md](./docs/ALGORITHM.md)
-- Demo run summary data: [docs/planning_demo_summary.json](./docs/planning_demo_summary.json)
-
-Preview:
-
-![MVC Preview](./docs/images/planning_mvc.png)
-![Joint Validation Preview](./docs/images/planning_joint_validation.png)
